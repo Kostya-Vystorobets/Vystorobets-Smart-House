@@ -6,6 +6,8 @@
 function Device (name) {
 	this._name = name;         			
 	this._state = false;   
+	this._power = [];
+	this._сorrentPower = 0;
 }
 Device.prototype.getName = function() {
 	return this._name;
@@ -38,15 +40,17 @@ Device.prototype.lessPower = function() {
 	}
 };
 
+
 // Класс устройства AirHumidifier, наследник.
-function AirHumidifier(name) {      			
+function AirHumidifier(name) {
+	Device.call(this, name);
 	this._humidity = 50;            	
 	this._power = ["low", "medium", "high", "turbo"];
-	this._сorrentPower = 0;
-	Device.call(this, name);
+	
 };
 AirHumidifier.prototype = Object.create(Device.prototype);
 AirHumidifier.prototype.constructor = AirHumidifier;
+
 AirHumidifier.prototype.getHumidity = function() {
 	return this._humidity;
 };
@@ -57,14 +61,14 @@ AirHumidifier.prototype.setHumidity = function(value) {
 };
 
 // Класс устройства Heater, наследник.
-function Heater(name) {   			
+function Heater(name) { 
+  	Device.call(this, name);		
 	this._temperature  = 22;            	
 	this._power = ["0.75kW.h", "1.5kW.h", "3kW.h"];
-	this._сorrentPower = 0;
-	Device.call(this, name);	
 };
 Heater.prototype = Object.create(Device.prototype);
 Heater.prototype.constructor = Heater;
+
 Heater.prototype.getTemperature = function() {
 	return this._temperature;
 	}
@@ -75,38 +79,6 @@ Heater.prototype.setTemperature = function(value) {
 	}
 };
 
+
 // Класс  SmartHouse.
-function SmartHouse (name) {
-	this._name = name;
-	this._devices = [];
-};
-SmartHouse.prototype.getName = function() {
-	return this._name;
-};
-SmartHouse.prototype.addDevice = function(device) {
-	this._devices.push(device);
-};
-SmartHouse.prototype.getDevices = function() {
-	return this._devices;
-};
-SmartHouse.prototype.getDeviceByName = function(name) {
-	var name = this._devices.find(function (value) {
-		return name === value.getName();		
-	});
-	return name.getName();
-};
-SmartHouse.prototype.deleteDeviceByName = function(name) {
-	this._devices = this._devices.filter(function (value) {
-		return name !== value.getName();		
-	});
-};
-SmartHouse.prototype.onAllDevice = function() {
-	this._devices.forEach(function (value) {
-		value.onState();
-	});
-};
-SmartHouse.prototype.offAllDevice = function() {
-	this._devices.forEach(function (value) {
-		value.offState();
-	});
-};
+
