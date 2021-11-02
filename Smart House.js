@@ -95,10 +95,11 @@ SmartHouse.prototype.getDevices = function() {
 	return this._devices;
 };
 SmartHouse.prototype.getDeviceByName = function(name) {
-	var name = this._devices.find(function (value) {
-		return name === value.getName();		
-	});
-	return name.getName();
+	var arrNames = this._devices.map(function (value) {
+        return value.getName();
+    });
+    var i = arrNames.indexOf(name);
+		return this._devices[i];
 };
 SmartHouse.prototype.deleteDeviceByName = function(name) {
 	this._devices = this._devices.filter(function (value) {
@@ -115,3 +116,4 @@ SmartHouse.prototype.offAllDevice = function() {
 		value.offState();
 	});
 };
+
