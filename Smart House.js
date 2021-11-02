@@ -1,8 +1,7 @@
 "use strict"
 //Система умного дома. Управление компонентами: увлажнитель воздуха и обогреватель.  
 
-// Класс родитель Device
-
+// Класс родитель Device.
 function Device (name) {
 	this._name = name;         			
 	this._state = false;   
@@ -116,4 +115,3 @@ SmartHouse.prototype.offAllDevice = function() {
 		value.offState();
 	});
 };
-
