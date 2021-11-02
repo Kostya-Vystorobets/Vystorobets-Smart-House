@@ -81,4 +81,37 @@ Heater.prototype.setTemperature = function(value) {
 
 
 // Класс  SmartHouse.
-
+function SmartHouse (name) {
+	this._name = name;
+	this._devices = [];
+};
+SmartHouse.prototype.getName = function() {
+	return this._name;
+};
+SmartHouse.prototype.addDevice = function(device) {
+	this._devices.push(device);
+};
+SmartHouse.prototype.getDevices = function() {
+	return this._devices;
+};
+SmartHouse.prototype.getDeviceByName = function(name) {
+	var name = this._devices.find(function (value) {
+		return name === value.getName();		
+	});
+	return name.getName();
+};
+SmartHouse.prototype.deleteDeviceByName = function(name) {
+	this._devices = this._devices.filter(function (value) {
+		return name !== value.getName();		
+	});
+};
+SmartHouse.prototype.onAllDevice = function() {
+	this._devices.forEach(function (value) {
+		value.onState();
+	});
+};
+SmartHouse.prototype.offAllDevice = function() {
+	this._devices.forEach(function (value) {
+		value.offState();
+	});
+};
