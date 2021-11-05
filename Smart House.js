@@ -90,8 +90,8 @@ class SmartHouse {
 		return this._devices;
 	}
 	getDeviceByName(name) {
-		let arrNames = this._devices.map((value) => value.name);
-		let i = arrNames.indexOf(name);
+		const arrNames = this._devices.map((value) => value.name);
+		const i = arrNames.indexOf(name);
 			return this._devices[i];
 	}
 	deleteDeviceByName(name) {
